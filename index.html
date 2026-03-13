@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雅芯托育园 | 爱·专业·成长</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1D1D1F;
+            --accent: #0071E3;
+            --bg-light: #F5F5F7;
+            --white: #FFFFFF;
+            --text-gray: #6E6E73;
+            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            color: var(--primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+            background-size: 200px 200px;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-200px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 96px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 24px);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            font-size: 17px;
+            font-weight: 500;
+            border-radius: 980px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Sections Common */
+        section {
+            padding: 120px 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 19px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Environment Section */
+        .environment {
+            background: var(--bg-light);
+        }
+
+        .env-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .env-item {
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+        }
+
+        .env-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .env-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .env-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .env-placeholder span {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .philosophy h2 {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .philosophy.visible h2 {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s ease;
+        }
+
+        .philosophy p {
+            font-size: 19px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .contact-item span:first-child {
+            font-size: 24px;
+        }
+
+        .contact-form {
+            background: var(--bg-light);
+            padding: 50px;
+            border-radius: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 17px;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            background: var(--white);
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent);
+            color: var(--white);
+            padding: 18px 32px;
+            font-size: 17px;
+            font-weight: 500;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #0077ED;
+            transform: scale(1.01);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-light);
+            padding: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .env-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 48px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .env-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .contact-form {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">雅芯托育园</a>
+            <ul class="nav-links">
+                <li><a href="#services">服务</a></li>
+                <li><a href="#environment">环境</a></li>
+                <li><a href="#philosophy">理念</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>爱 · 专业 · 成长</h1>
+            <p>为每一个孩子创造安全、温暖、智慧的成长空间</p>
+            <a href="#contact" class="btn btn-primary">立即咨询 →</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>我们的服务</h2>
+                <p>专业托育团队，为孩子提供全方位成长支持</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌞</div>
+                    <h3>日托服务</h3>
+                    <p>专业保育员全程陪伴，科学作息安排，营养均衡餐食，让孩子在这里快乐成长每一天</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📚</div>
+                    <h3>早期教育</h3>
+                    <p>引入先进早教理念，根据不同年龄段设计特色课程，激发孩子探索欲和创造力</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⏰</div>
+                    <h3>临时托管</h3>
+                    <p>灵活托管方案，满足家长临时托管需求，专业看护让家长安心托付</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environment Section -->
+    <section class="environment" id="environment">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>我们的环境</h2>
+                <p>安全、温馨、充满童趣的成长空间</p>
+            </div>
+            <div class="env-grid">
+                <div class="env-item">
+                    <div class="env-placeholder">
+                        <span>🧸</span>
+                        活动室
+                    </div>
+                </div>
+                <div class="env-item">
+                    <div class="env-placeholder">
+                        <span>🎨</span>
+                        创意角
+                    </div>
+                </div>
+                <div class="env-item">
+                    <div class="env-placeholder">
+                        <span>📖</span>
+                        阅读区
+                    </div>
+                </div>
+                <div class="env-item">
+                    <div class="env-placeholder">
+                        <span>🌿</span>
+                        户外空间
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <h2>用爱守护每一个童年</h2>
+            <p>我们相信每个孩子都是独特的个体，拥有无限的潜力。<br>在雅芯，我们用专业的爱，陪伴每一个小小灵魂探索世界，健康成长。</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>联系我们</h2>
+                <p>开启孩子的精彩成长之旅</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info fade-in">
+                    <h3>雅芯托育园</h3>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>上海浦东金桥金葵路1176号</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>400-XXX-XXXX</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🕐</span>
+                        <span>周一至周五 7:30 - 18:30</span>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="consultForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label>您的姓名</label>
+                            <input type="text" name="name" required placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="tel" name="phone" required placeholder="请输入您的电话号码">
+                        </div>
+                        <div class="form-group">
+                            <label>宝宝年龄</label>
+                            <select name="age" required>
+                                <option value="">请选择宝宝年龄</option>
+                                <option value="0-1岁">0-1岁</option>
+                                <option value="1-2岁">1-2岁</option>
+                                <option value="2-3岁">2-3岁</option>
+                                <option value="3-6岁">3-6岁</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>留言</label>
+                            <textarea name="message" placeholder="请告诉我们您的需求..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">提交咨询</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 雅芯托育园 | 让爱伴随每一个成长瞬间</p>
+    </footer>
+
+    <script>
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .service-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        function submitForm(e) {
+            e.preventDefault();
+            const form = e.target;
+            const data = new FormData(form);
+            
+            // Show success message
+            alert('感谢您的咨询！我们会尽快与您联系。');
+            form.reset();
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
