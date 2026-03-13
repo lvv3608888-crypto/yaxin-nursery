@@ -66,11 +66,20 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 20px;
             font-weight: 600;
             color: var(--primary);
             text-decoration: none;
             letter-spacing: -0.5px;
+        }
+
+        .logo img {
+            height: 32px;
+            width: 32px;
+            border-radius: 8px;
         }
 
         .nav-links {
@@ -100,12 +109,14 @@
             align-items: center;
             text-align: center;
             padding: 120px 40px 80px;
-            background: var(--gradient-hero);
+            background: linear-gradient(135deg, rgba(102,126,234,0.9) 0%, rgba(118,75,162,0.9) 100%), url('images/activities.jpg');
+            background-size: cover;
+            background-position: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
+        .hero::after {
             content: '';
             position: absolute;
             top: 0;
@@ -174,6 +185,22 @@
         .btn-primary:hover {
             transform: scale(1.02);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image {
+            margin-top: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+        }
+
+        .hero-image img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         /* Sections Common */
@@ -537,7 +564,10 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-content">
-            <a href="#" class="logo">雅芯托育园</a>
+            <a href="#" class="logo">
+                <img src="logo.svg" alt="雅芯托育园">
+                <span>雅芯托育园</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#services">服务</a></li>
                 <li><a href="#environment">环境</a></li>
@@ -558,6 +588,9 @@
             <h1>爱 · 专业 · 成长</h1>
             <p>为每一个孩子创造安全、温暖、智慧的成长空间</p>
             <a href="#contact" class="btn btn-primary">立即咨询 →</a>
+            <div class="hero-image">
+                <img src="images/baby.jpg" alt="孩子们快乐成长">
+            </div>
         </div>
     </section>
 
@@ -597,28 +630,16 @@
             </div>
             <div class="env-grid">
                 <div class="env-item">
-                    <div class="env-placeholder">
-                        <span>🧸</span>
-                        活动室
-                    </div>
+                    <img src="images/classroom.jpg" alt="活动室">
                 </div>
                 <div class="env-item">
-                    <div class="env-placeholder">
-                        <span>🎨</span>
-                        创意角
-                    </div>
+                    <img src="images/playground.jpg" alt="户外活动区">
                 </div>
                 <div class="env-item">
-                    <div class="env-placeholder">
-                        <span>📖</span>
-                        阅读区
-                    </div>
+                    <img src="images/reading.jpg" alt="阅读区">
                 </div>
                 <div class="env-item">
-                    <div class="env-placeholder">
-                        <span>🌿</span>
-                        户外空间
-                    </div>
+                    <img src="images/outdoor.jpg" alt="教室">
                 </div>
             </div>
         </div>
